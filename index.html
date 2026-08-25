@@ -77,17 +77,20 @@
   <footer><span>© 2026 SOK SOVANN</span><span>CREATIVE PORTFOLIO</span></footer>
   <dialog id="lightbox"><button class="close" aria-label="Close">×</button><img alt="Expanded portfolio artwork"></dialog>
   <script>
-    const groups={
-      "Hospitality":[12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,69,70,71,73,74,75,76,77,78],
-      "Healthcare":[52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,73,74,75,76]
-    };
-    const gallery=document.querySelector('#gallery'),filters=document.querySelector('#filters');
-    ['All',...Object.keys(groups)].forEach((name,i)=>{const b=document.createElement('button');b.className='filter'+(i===0?' active':'');b.textContent=name;b.dataset.filter=name;filters.append(b)});
-    Object.entries(groups).forEach(([group,items])=>items.forEach(n=>{const button=document.createElement('button');button.className='piece';button.dataset.group=group;button.setAttribute('aria-label',`${group} portfolio artwork`);button.innerHTML=`<img src="assets/${group.toLowerCase()}/image${n}.webp" alt="${group} design by Sok Sovann" loading="lazy" decoding="async">`;gallery.append(button)}));
-    const pieces=[...document.querySelectorAll('.piece')];
-    const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}}),{rootMargin:'100px'});pieces.forEach(p=>observer.observe(p));
-    filters.addEventListener('click',e=>{if(!e.target.matches('.filter'))return;document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');pieces.forEach(p=>p.classList.toggle('hide',e.target.dataset.filter!=='All'&&p.dataset.group!==e.target.dataset.filter))});
-    const dialog=document.querySelector('#lightbox'),zoom=dialog.querySelector('img');gallery.addEventListener('click',e=>{const p=e.target.closest('.piece');if(!p)return;zoom.src=p.querySelector('img').src;zoom.alt=p.querySelector('img').alt;dialog.showModal()});dialog.querySelector('.close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+    async function initGallery(){
+      const groups=await fetch('assets/gallery.json').then(response=>{
+        if(!response.ok)throw new Error('Unable to load gallery');
+        return response.json();
+      });
+      const gallery=document.querySelector('#gallery'),filters=document.querySelector('#filters');
+      ['all',...Object.keys(groups)].forEach((category,i)=>{const name=category[0].toUpperCase()+category.slice(1);const b=document.createElement('button');b.className='filter'+(i===0?' active':'');b.textContent=name;b.dataset.filter=category;filters.append(b)});
+      Object.entries(groups).forEach(([category,files])=>files.forEach(file=>{const name=category[0].toUpperCase()+category.slice(1);const button=document.createElement('button');button.className='piece';button.dataset.group=category;button.setAttribute('aria-label',`${name} portfolio artwork`);button.innerHTML=`<img src="assets/${category}/${file}" alt="${name} design by Sok Sovann" loading="lazy" decoding="async">`;gallery.append(button)}));
+      const pieces=[...document.querySelectorAll('.piece')];
+      const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}}),{rootMargin:'100px'});pieces.forEach(p=>observer.observe(p));
+      filters.addEventListener('click',e=>{if(!e.target.matches('.filter'))return;document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');pieces.forEach(p=>p.classList.toggle('hide',e.target.dataset.filter!=='all'&&p.dataset.group!==e.target.dataset.filter))});
+      const dialog=document.querySelector('#lightbox'),zoom=dialog.querySelector('img');gallery.addEventListener('click',e=>{const p=e.target.closest('.piece');if(!p)return;zoom.src=p.querySelector('img').src;zoom.alt=p.querySelector('img').alt;dialog.showModal()});dialog.querySelector('.close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+    }
+    initGallery().catch(error=>{console.error(error);document.querySelector('#gallery').textContent='Portfolio images could not be loaded.'});
   </script>
 </body>
 </html>
