@@ -78,15 +78,8 @@
   <dialog id="lightbox"><button class="close" aria-label="Close">×</button><img alt="Expanded portfolio artwork"></dialog>
   <script>
     const groups={
-      "Hotel KVL":[12,13,14,15,16,17,18,19,20,21,22],
-      "Automotive":[23,24],
-      "Hospitality":[25,26,27,28,29,30,31,32,33,34,35],
-      "Food & Beverage":[36,37,38,39,40,41,42,43,44,45],
-      "Eleven Degrees":[46,47,48,49,50,51],
-      "Healthcare":[52,53,54,55,56,57,58,59,60,61,62],
-      "Beauty":[63,64,65,66,67,68],
-      "Branding":[69,70],
-      "Reporting":[71]
+      "Hospitality":[12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,69,70,71],
+      "Healthcare":[52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68]
     };
     const gallery=document.querySelector('#gallery'),filters=document.querySelector('#filters');
     ['All',...Object.keys(groups)].forEach((name,i)=>{const b=document.createElement('button');b.className='filter'+(i===0?' active':'');b.textContent=name;b.dataset.filter=name;filters.append(b)});
