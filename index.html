@@ -84,7 +84,8 @@
         fetch('assets/video/videos.json').then(response=>{if(!response.ok)throw new Error('Unable to load videos');return response.json()})
       ]);
       const gallery=document.querySelector('#gallery'),filters=document.querySelector('#filters');
-      ['all',...Object.keys(groups)].forEach((category,i)=>{const name=category[0].toUpperCase()+category.slice(1);const b=document.createElement('button');b.className='filter'+(i===0?' active':'');b.textContent=name;b.dataset.filter=category;filters.append(b)});
+      const categories=Object.keys(groups).filter(category=>groups[category].length||(videos[category]||[]).length);
+      ['all',...categories].forEach((category,i)=>{const name=category[0].toUpperCase()+category.slice(1);const b=document.createElement('button');b.className='filter'+(i===0?' active':'');b.textContent=name;b.dataset.filter=category;filters.append(b)});
       Object.entries(groups).forEach(([category,files])=>files.forEach(file=>{const name=category[0].toUpperCase()+category.slice(1);const button=document.createElement('button');button.className='piece';button.dataset.group=category;button.setAttribute('aria-label',`${name} portfolio artwork`);button.innerHTML=`<img src="assets/${category}/${file}" alt="${name} design by Sok Sovann" loading="lazy" decoding="async">`;gallery.append(button)}));
       const videoSection=document.querySelector('#videoSection'),videoGrid=document.querySelector('#videoGrid');
       (videos.video||[]).forEach((id,index)=>{const card=document.createElement('div');card.className='video-card';card.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${id}" title="Video project ${index+1} by Sok Sovann" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;videoGrid.append(card)});
