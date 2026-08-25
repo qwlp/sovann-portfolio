@@ -1,5 +1,6 @@
 .DS_Store
 Thumbs.db
+.~lock.*#
 assets/previews/
 assets/media/
 videos/
