@@ -1,5 +1,10 @@
 {
-  "hospitality": [
+  "design": [
+    "image69.webp",
+    "image70.webp",
+    "image71.webp"
+  ],
+  "poster": [
     "image12.webp",
     "image13.webp",
     "image14.webp",
@@ -7,10 +12,6 @@
     "image16.webp",
     "image17.webp",
     "image18.webp",
-    "image19.webp",
-    "image20.webp",
-    "image21.webp",
-    "image22.webp",
     "image23.webp",
     "image24.webp",
     "image25.webp",
@@ -25,13 +26,11 @@
     "image34.webp",
     "image35.webp",
     "image36.webp",
-    "image37.webp",
     "image38.webp",
     "image39.webp",
     "image40.webp",
     "image41.webp",
     "image42.webp",
-    "image43.webp",
     "image44.webp",
     "image45.webp",
     "image46.webp",
@@ -40,17 +39,6 @@
     "image49.webp",
     "image50.webp",
     "image51.webp",
-    "image69.webp",
-    "image70.webp",
-    "image71.webp",
-    "image73.webp",
-    "image74.webp",
-    "image75.webp",
-    "image76.webp",
-    "image77.webp",
-    "image78.webp"
-  ],
-  "healthcare": [
     "image52.webp",
     "image53.webp",
     "image54.webp",
@@ -67,10 +55,25 @@
     "image65.webp",
     "image66.webp",
     "image67.webp",
-    "image68.webp",
-    "image73.webp",
-    "image74.webp",
-    "image75.webp",
-    "image76.webp"
-  ]
+    "image68.webp"
+  ],
+  "photography": [
+    "healthcare-image73.webp",
+    "healthcare-image74.webp",
+    "healthcare-image75.webp",
+    "healthcare-image76.webp",
+    "hospitality-image19.webp",
+    "hospitality-image20.webp",
+    "hospitality-image21.webp",
+    "hospitality-image22.webp",
+    "hospitality-image37.webp",
+    "hospitality-image43.webp",
+    "hospitality-image73.webp",
+    "hospitality-image74.webp",
+    "hospitality-image75.webp",
+    "hospitality-image76.webp",
+    "hospitality-image77.webp",
+    "hospitality-image78.webp"
+  ],
+  "video": []
 }
