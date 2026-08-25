@@ -35,7 +35,7 @@
   <main id="top">
     <section class="hero">
       <div><div class="kicker">Creative portfolio · Cambodia</div><h1>Ideas made <em>visible.</em></h1><p class="hero-copy">Graphic designer and digital marketer creating bold campaigns, social content and brand experiences for hospitality, healthcare and lifestyle brands.</p></div>
-      <div class="portrait"><img src="assets/work/image9.webp" alt="Portrait of Sok Sovann"></div>
+      <div class="portrait"><img src="assets/profile/image9.webp" alt="Portrait of Sok Sovann"></div>
     </section>
     <div class="ticker" aria-hidden="true"><div>GRAPHIC DESIGN ✦ DIGITAL MARKETING ✦ MOTION GRAPHICS ✦ SOCIAL MEDIA ✦ BRAND IDENTITY ✦ GRAPHIC DESIGN ✦ DIGITAL MARKETING ✦ MOTION GRAPHICS ✦ SOCIAL MEDIA ✦ BRAND IDENTITY ✦ </div></div>
 
@@ -83,7 +83,7 @@
     };
     const gallery=document.querySelector('#gallery'),filters=document.querySelector('#filters');
     ['All',...Object.keys(groups)].forEach((name,i)=>{const b=document.createElement('button');b.className='filter'+(i===0?' active':'');b.textContent=name;b.dataset.filter=name;filters.append(b)});
-    Object.entries(groups).forEach(([group,items])=>items.forEach(n=>{const button=document.createElement('button');button.className='piece';button.dataset.group=group;button.setAttribute('aria-label',`${group} portfolio artwork`);button.innerHTML=`<img src="assets/work/image${n}.webp" alt="${group} design by Sok Sovann" loading="lazy" decoding="async">`;gallery.append(button)}));
+    Object.entries(groups).forEach(([group,items])=>items.forEach(n=>{const button=document.createElement('button');button.className='piece';button.dataset.group=group;button.setAttribute('aria-label',`${group} portfolio artwork`);button.innerHTML=`<img src="assets/${group.toLowerCase()}/image${n}.webp" alt="${group} design by Sok Sovann" loading="lazy" decoding="async">`;gallery.append(button)}));
     const pieces=[...document.querySelectorAll('.piece')];
     const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}}),{rootMargin:'100px'});pieces.forEach(p=>observer.observe(p));
     filters.addEventListener('click',e=>{if(!e.target.matches('.filter'))return;document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');pieces.forEach(p=>p.classList.toggle('hide',e.target.dataset.filter!=='All'&&p.dataset.group!==e.target.dataset.filter))});
